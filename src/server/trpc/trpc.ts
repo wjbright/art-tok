@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
-
+import { getToken } from "next-auth/jwt";
 import { type Context } from "./context";
 
 const t = initTRPC.context<Context>().create({
@@ -21,14 +21,16 @@ export const publicProcedure = t.procedure;
  * Reusable middleware to ensure
  * users are logged in
  */
-const isAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
+const isAuthed = t.middleware(async ({ ctx, next }) => {
+  const token = await getToken({ req: ctx.req });
+  if (!ctx.req || !token) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
+
   return next({
     ctx: {
-      // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.session.user },
+      ...ctx,
+      token,
     },
   });
 });
