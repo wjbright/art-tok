@@ -13,5 +13,8 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    domains: ["https://randomuser.me", "https://res.cloudinary.com"],
+  },
 };
 export default config;
