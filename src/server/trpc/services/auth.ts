@@ -1,9 +1,9 @@
-import { PrismaClient, User } from "@prisma/client";
-import { User as UserInterface } from "../interfaces/auth";
+import { PrismaClient } from "@prisma/client";
+import { type User } from "../interfaces/auth";
 
 const prisma = new PrismaClient();
 
-export const create = (data: UserInterface) => {
+export const create = (data: User) => {
   return prisma.user.create({
     data: {
       ...data,
@@ -11,10 +11,10 @@ export const create = (data: UserInterface) => {
   });
 };
 
-export const getUserByEmail = (data: UserInterface) => {
+export const getUserByEmail = (email: string) => {
   return prisma.user.findUnique({
     where: {
-      email: data.email,
+      email,
     },
   });
 };

@@ -13,6 +13,7 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center">
         <Link href={"/auth/register"}>Register here</Link>
         <Link href={"/auth/login"}>Login here</Link>
+        <Link href={"/app/upload"}>Upload Content here</Link>
       </main>
     </>
   );

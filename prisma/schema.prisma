@@ -17,9 +17,22 @@ datasource db {
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
-  email         String   @unique
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
   name          String
   profile_image String
-  created_at    DateTime @default(now())
+  created_at    DateTime  @default(now())
+  Content       Content[]
+}
+
+model Content {
+  id         String   @id @default(uuid())
+  url        String
+  caption    String
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
+
+  @@index([user_id])
+  @@index([caption])
 }
