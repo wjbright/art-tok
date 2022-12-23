@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { type User } from "../interfaces/auth";
+import { PrismaClient, type User } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
