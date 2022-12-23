@@ -18,7 +18,7 @@ const imageLoader = ({ src, quality, width }: any) => {
 export const Page = ({ data }: PageProps) => {
     const { contentUrl, profileImageUrl, profileUsername, contentDescription } = data;
     return (
-        <div className={`relative flex items-center justify-center h-screen min-w-full snap-end snap-always bg-white`}>
+        <div className={`relative flex items-center justify-center h-full min-w-full snap-end snap-always bg-white`}>
             <div className="absolute bottom-3 right-3 w-12 h-12 rounded-[50%] bg-white">
                 <Image className="rounded-[50%]" loader={imageLoader} src={`${RANDOM_URL}/${profileImageUrl}`} width={"50"} height={"50"} alt="profile picture" />
             </div>
