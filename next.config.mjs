@@ -1,4 +1,5 @@
 // @ts-check
+
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
  * This is especially useful for Docker builds.
@@ -12,6 +13,14 @@ const config = {
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
+  },
+  images: {
+    domains: [
+      "https://randomuser.me",
+      "https://res.cloudinary.com",
+      "https://api.pexels.com/v1",
+      "https://api.pexels.com/videos",
+    ],
   },
 };
 export default config;
