@@ -5,4 +5,4 @@ export const createUserValidation = z.object({
   email: z.string(),
   profile_image: z.string(),
 });
-export type CreateUser = z.infer<typeof createUserValidation>;
+export type CreateUserInterface = z.infer<typeof createUserValidation>;

@@ -1,9 +1,6 @@
 import { router, publicProcedure } from "../trpc";
-import { getFeedValidation } from "../validations/feed";
-import { registerUser } from "../controllers/auth.ctrl";
+import { getFeed } from "../controllers/feed.ctrl";
 
 export const feedRouter = router({
-  getFeed: publicProcedure
-    .input(getFeedValidation)
-    .query(async ({ input }) => registerUser({ input })),
+  getFeed,
 });

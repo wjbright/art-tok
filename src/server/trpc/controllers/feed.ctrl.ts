@@ -1,10 +1,9 @@
-import { create, getUserByEmail } from "../services/auth";
-import { CreateUser } from "../validations/auth";
+import { fetchProfile } from "../services/feed";
+import { publicProcedure } from "../trpc";
+import { getFeedValidation } from "../validations/feed";
 
-export const getFeed = async (input: CreateUser) => {
-  const existingUser = await getUserByEmail(input);
-  if (existingUser) {
-    return existingUser;
-  }
-  return await create(input);
-};
+export const getFeed = publicProcedure
+  .input(getFeedValidation)
+  .query(async ({ ctx, input }) => {
+    return await fetchProfile();
+  });
