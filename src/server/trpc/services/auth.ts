@@ -4,6 +4,7 @@ import { CreateUserInterface } from "../validations/auth";
 const prisma = new PrismaClient();
 
 export const create = (data: CreateUserInterface) => {
+
   return prisma.user.create({
     data: {
       ...data,
@@ -14,7 +15,7 @@ export const create = (data: CreateUserInterface) => {
 export const getUserByEmail = (data: CreateUserInterface) => {
   return prisma.user.findUnique({
     where: {
-      email: data.email,
+      email,
     },
   });
 };
