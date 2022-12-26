@@ -1,7 +1,8 @@
 import { z } from "zod";
 
-export const CREATE_USER_VALIDATION = z.object({
+export const createUserValidation = z.object({
   name: z.string(),
   email: z.string(),
   profile_image: z.string(),
 });
+export type CreateUserInterface = z.infer<typeof createUserValidation>;
