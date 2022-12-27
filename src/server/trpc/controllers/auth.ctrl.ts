@@ -1,9 +1,9 @@
 import { create, getUserByEmail } from "../services/auth";
 import { publicProcedure, protectedProcedure } from "../trpc";
-import { CREATE_USER_VALIDATION } from "../validations/auth";
+import { createUserValidation } from "../validations/auth";
 
 export const registerUser = publicProcedure
-  .input(CREATE_USER_VALIDATION)
+  .input(createUserValidation)
   .mutation(async ({ input }) => {
     try {
       const existingUser = await getUserByEmail(input.email);
