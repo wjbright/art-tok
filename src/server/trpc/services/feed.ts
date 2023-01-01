@@ -40,9 +40,16 @@ interface PexelPhotos {
   next_page: string;
 }
 
-export const fetchProfile = async (): Promise<Profile[]> => {
+export interface FetchProfile {
+  profilePages: Profile[];
+  hasNextPage: boolean;
+}
+export const fetchProfile = async (
+  limit: number,
+  page: number
+): Promise<FetchProfile> => {
   const profileImageRequest = await fetch(
-    `${PEXEL_IMAGE_API_URL}/search?query=people&per_page=1`,
+    `${PEXEL_IMAGE_API_URL}/search?query=people&per_page=1&page=${page}&orientation=square`,
     {
       headers: {
         Authorization: env.PEXEL_KEY,
@@ -52,24 +59,28 @@ export const fetchProfile = async (): Promise<Profile[]> => {
   const profileImage = (await profileImageRequest.json()) as PexelPhotos;
 
   const pagesRequest = await fetch(
-    `${PEXEL_IMAGE_API_URL}/search?query=art%20work&per_page=5`,
+    `${PEXEL_IMAGE_API_URL}/search?query=art%20work&per_page=${limit}&orientation=portrait&page=${page}`,
     {
       headers: {
         Authorization: env.PEXEL_KEY,
       },
     }
   );
+
   const pages = (await pagesRequest.json()) as PexelPhotos;
 
   const profilePages = pages.photos.map((photo) => {
     return {
       contentUrl: photo.src.original,
       contentType: "image",
-      profileImageUrl: `${profileImage.photos[0].src.original}?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=200`,
-      profileUsername: profileImage.photos[0].alt,
+      profileImageUrl: `${profileImage.photos[0].src.original}?auto=compress&cs=tinysrgb&dpr=1`,
+      profileUsername: profileImage.photos[0].photographer,
       contentDescription: photo.alt,
     } satisfies Profile;
   });
 
-  return profilePages;
+  return {
+    profilePages,
+    hasNextPage: Boolean(pages.next_page),
+  };
 };
