@@ -1,27 +1,14 @@
 import React, { useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import { trpc } from "../utils/trpc";
-import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import AuthModal from "../components/AuthModal";
 
+// Creating this so we can call the auth modal from anywhere easily.
+// This would be called when users want to perform certain actions on the app that need us to know which user it is.
+// PS: I am not yet sure which actions to use to call this auth flow yet.
 const withAuth = (WrappedComponent: React.FC) => {
   const ComponentWithAuthProps: React.FC = (props) => {
     const { data: sessionData } = useSession();
     const [showAuthModal, setShowAuthModal] = useState(false);
-    const router = useRouter();
-
-    const authMutation = trpc.auth.registerUser.useMutation({
-      onSuccess: () => {
-        setShowAuthModal(false);
-      },
-    });
-    // Handle Registeration here
-
-    // authMutation.mutateAsync({
-    //     email: user?.email as string,
-    //     name: user?.name as string,
-    //     profile_image: user?.image as string,
-    //   });
 
     return (
       <>

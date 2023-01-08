@@ -49,21 +49,14 @@ const AuthModal = ({ isOpen, setIsOpen }: AuthModalProps) => {
                         as="h3"
                         className="text-lg font-medium leading-6 text-gray-900"
                       >
-                        Signup / Login
+                        Continue with google
                       </Dialog.Title>
 
                       <div
                         onClick={() => signIn("google")}
-                        className="pointer mx-auto mt-10 block rounded-md border border-transparent   bg-indigo-600   px-4   py-2 text-center text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500  focus:ring-offset-2  sm:ml-3 sm:w-auto sm:text-sm"
+                        className=" mx-auto mt-10 block cursor-pointer rounded-md border border-transparent   bg-indigo-600   px-4   py-2 text-center text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500  focus:ring-offset-2  sm:ml-3 sm:w-auto sm:text-sm"
                       >
                         Authenticate with Google
-                        {/* <button
-                          type="button"
-                         
-                          className="block  justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                        >
-                         
-                        </button> */}
                       </div>
                     </div>
                   </div>
