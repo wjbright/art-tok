@@ -1,5 +1,6 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { trpc } from "../../../utils/trpc";
 
 export const authOptions: NextAuthOptions = {
   session: {
