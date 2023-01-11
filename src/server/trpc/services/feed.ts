@@ -56,6 +56,7 @@ export const fetchProfile = async (
       },
     }
   );
+
   const profileImage = (await profileImageRequest.json()) as PexelPhotos;
 
   const pagesRequest = await fetch(

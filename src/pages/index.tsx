@@ -1,9 +1,11 @@
-import { type NextPage } from "next";
+import { type GetServerSidePropsContext, type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { Feed } from "../components/Feed";
+import withAuth from "../hoc/withAuth";
 
-const Home: NextPage = () => {
+const Home: NextPage = (props) => {
+  const { setShowAuthModal, session } = props;
   return (
     <>
       <Head>
@@ -12,12 +14,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col ">
-        <Link href={"/auth/register"}>Register here</Link>
-        <Link href={"/auth/login"}>Login here</Link>
-        <Feed />
+        <Feed setShowAuthModal={setShowAuthModal} session={session} />
       </main>
     </>
   );
 };
 
-export default Home;
+export default withAuth(Home);

@@ -7,4 +7,5 @@ export const Profile = ({ pages, lastProfileRef }: { pages: ProfileData[], lastP
             {pages.map((data) => <Page data={data} />)}
         </div>
     </div>
-}
+  );
+};

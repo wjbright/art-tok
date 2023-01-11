@@ -11,10 +11,10 @@ export const create = (data: CreateUserInterface) => {
   });
 };
 
-export const getUserByEmail = (data: CreateUserInterface) => {
+export const getUserByEmail = (email: string) => {
   return prisma.user.findUnique({
     where: {
-      email: data.email,
+      email,
     },
   });
 };
