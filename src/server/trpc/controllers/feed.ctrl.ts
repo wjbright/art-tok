@@ -5,5 +5,9 @@ import { getFeedValidation } from "../validations/feed";
 export const getFeed = publicProcedure
   .input(getFeedValidation)
   .query(async ({ ctx, input }) => {
-    return await fetchProfile();
+    try {
+      return await fetchProfile();
+    } catch (error) {
+      throw error;
+    }
   });

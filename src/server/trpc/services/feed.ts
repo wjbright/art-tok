@@ -49,6 +49,7 @@ export const fetchProfile = async (): Promise<Profile[]> => {
       },
     }
   );
+
   const profileImage = (await profileImageRequest.json()) as PexelPhotos;
 
   const pagesRequest = await fetch(
